@@ -1,11 +1,10 @@
 import com.github.javafaker.Faker;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.LogDetail;
-import io.restassured.RestAssured.*;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import lombok.Value;
-import lombok.val;
+
 import java.util.Locale;
 import static io.restassured.RestAssured.*;
 
@@ -54,13 +53,13 @@ public class DataGenerator {
         private Registration() {
         }
 
-        public static RegistrationDto getUser(String status) {
+        public static String getUser(String status) {
             String user = getRandomLogin();
             // TODO: создать пользователя user используя методы getRandomLogin(), getRandomPassword() и параметр status
             return user;
         }
 
-        public static RegistrationDto getRegisteredUser(String status) {
+        public static String getRegisteredUser(String status) {
             String registeredUser = getUser(status);
             // объявить переменную registeredUser и присвоить ей значение возвращённое getUser(status).
             // Послать запрос на регистрацию пользователя с помощью вызова sendRequest(registeredUser)

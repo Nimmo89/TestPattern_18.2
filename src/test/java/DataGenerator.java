@@ -38,14 +38,14 @@ public class DataGenerator {
 
     public static String getRandomLogin() {
         String login = faker.name().username();
-        // TODO: добавить логику для объявления переменной login и задания её значения, для генерации
+        //  добавить логику для объявления переменной login и задания её значения, для генерации
         //  случайного логина используйте faker
         return login;
     }
 
     public static String getRandomPassword() {
         String password = faker.internet().password();
-        // TODO: добавить логику для объявления переменной password и задания её значения, для генерации
+        // добавить логику для объявления переменной password и задания её значения, для генерации
         //  случайного пароля используйте faker
         return password;
     }
@@ -55,13 +55,14 @@ public class DataGenerator {
         }
 
         public static RegistrationDto getUser(String status) {
-
+            String user = getRandomLogin();
             // TODO: создать пользователя user используя методы getRandomLogin(), getRandomPassword() и параметр status
             return user;
         }
 
         public static RegistrationDto getRegisteredUser(String status) {
-            // TODO: объявить переменную registeredUser и присвоить ей значение возвращённое getUser(status).
+            String registeredUser = getUser(status);
+            // объявить переменную registeredUser и присвоить ей значение возвращённое getUser(status).
             // Послать запрос на регистрацию пользователя с помощью вызова sendRequest(registeredUser)
             return registeredUser;
         }

@@ -3,10 +3,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.open;
-//import static DataGenerator.Registration.getRegisteredUser;
+import static DataGenerator.Registration.getRegisteredUser;
 import static DataGenerator.Registration.getUser;
-//import static DataGenerator.getRandomLogin;
-//import static DataGenerator.getRandomPassword;
+import static DataGenerator.getRandomLogin;
+import static DataGenerator.getRandomPassword;
 import static io.restassured.RestAssured.given;
 
 class AuthTest {

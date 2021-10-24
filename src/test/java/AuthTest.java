@@ -4,18 +4,13 @@ import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.*;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 
 class AuthTest {
-    private static final RequestSpecification requestSpec = new RequestSpecBuilder()
-            .setBaseUri("http://localhost")
-            .setPort(9999)
-            .setAccept(ContentType.JSON)
-            .setContentType(ContentType.JSON)
-            .log(LogDetail.ALL)
-            .build();
 
     @BeforeEach
     void setup() {
@@ -47,11 +42,11 @@ class AuthTest {
     @DisplayName("Should get error message if login with blocked registered user")
     void shouldGetErrorIfBlockedUser() {
         var blockedUser = DataGenerator.Registration.getRegisteredUser("blocked");
-        $("[data-test-id=login] input").setValue(blockedUser.getStatus());
-        $("[data-test-id=password] input").setValue(DataGenerator.getRandomPassword());
+        $("[data-test-id=login] input").setValue(blockedUser.getLogin());
+        $("[data-test-id=password] input").setValue(blockedUser.getPassword());
         $("[data-test-id=action-login]").click();
-        $(withText("Ошибка")).shouldBe(visible);
-        $("[data-test-id=error-notification] .notification__content").shouldHave(ownText("Неверно указан логин или пароль"));
+        $(withText("Ошибка")).shouldBe(visible, Duration.ofSeconds(15));
+        $("[data-test-id=error-notification] .notification__content").shouldHave(ownText("Ошибка! Пользователь заблокирован"));
     }
 
     @Test
